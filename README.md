@@ -35,8 +35,35 @@ pip install git+https://github.com/partha6369/textcleaner.git
 from textcleaner import preprocess
 
 text = "I can't believe it's already raining! 😞 <p>Click here</p>"
+
+# Default usage (all features enabled)
 cleaned = preprocess(text)
 print(cleaned)
+
+# Custom usage with optional features disabled
+cleaned_partial = preprocess(
+    text,
+    lemmatize=False,            # Skip spaCy processing (lemmatisation, POS filtering)
+    correct=False,              # Skip spelling correction
+    expand=False                # Skip contraction expansion
+)
+print(cleaned_partial)
+```
+
+## 🔧 Parameters
+
+The preprocess() function offers flexible control over each text cleaning step. You can selectively enable or disable operations using the parameters below:
+
+```python
+def preprocess(
+    text,
+    lowercase=True,
+    remove_html=True,
+    remove_emoji=True,
+    expand=True,
+    correct=True,
+    lemmatize=True,
+)
 ```
 
 ## 📦 Dependencies
