@@ -1,15 +1,22 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='textcleaner',
-    version='0.1',
+    name="textcleaner-partha",
+    version="0.1.0",
+    description="Reusable text preprocessing library for NLP tasks",
+    author="Dr. Partha Majumdar",
+    author_email="partha.majumdar@hotmail.com",
+    url="https://github.com/partha6369/textcleaner",
     packages=find_packages(),
     install_requires=[
-        'spacy',
-        'autocorrect',
-        'contractions'
+        "spacy",
+        "autocorrect",
+        "contractions"
     ],
-    author = "Dr. Partha Majumdar",
-    author_email = "partha.majumdar@hotmail.com",
-    description = "A simple text preprocessing package for NLP tasks",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
 )
