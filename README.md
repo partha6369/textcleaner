@@ -1,4 +1,7 @@
-# 🧹 textcleaner
+# 🧹 textcleaner-partha
+
+[![PyPI version](https://img.shields.io/pypi/v/textcleaner-partha?color=blue)](https://pypi.org/project/textcleaner-partha/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 A lightweight and reusable text preprocessing package for NLP tasks.
 It cleans text by removing HTML tags and emojis, expanding contractions, correcting spelling, and performing lemmatization using spaCy.
@@ -13,6 +16,12 @@ It cleans text by removing HTML tags and emojis, expanding contractions, correct
 
 
 ## 🚀 Installation
+
+### From PyPI:
+
+```bash
+pip install textcleaner-partha
+```
 
 Install directly from GitHub:
 
@@ -49,4 +58,4 @@ python -m spacy download en_core_web_sm
 
 ## 📄 License
 
-MIT License © Partha Majumdar
+MIT License © Dr. Partha Majumdar
