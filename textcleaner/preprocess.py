@@ -50,25 +50,43 @@ def correct_spelling(text):
 def expand_contractions(text):
     return contractions.fix(text)
 
-def preprocess(text):
-    text = text.lower()
-    text = remove_html_tags(text)
-    text = remove_emojis(text)
-    text = expand_contractions(text)
+def preprocess(
+    text,
+    lowercase=True,
+    remove_html=True,
+    remove_emoji=True,
+    expand=True,
+    correct=True,
+    lemmatize=True,
+):
+    if lowercase:
+        text = text.lower()
 
-    try:
-        text = correct_spelling(text)
-    except Exception:
-        pass
+    if remove_html:
+        text = remove_html_tags(text)
 
-    nlp = get_nlp()
-    doc = nlp(text)
-    tokens = [
-        token.lemma_ for token in doc
-        if token.is_alpha
-        and not token.is_stop
-        and not token.is_punct
-        and not token.like_num
-        and token.pos_ in {"NOUN", "VERB", "ADJ", "ADV"}
-    ]
-    return ' '.join(tokens)
+    if remove_emoji:
+        text = remove_emojis(text)
+
+    if expand:
+        text = expand_contractions(text)
+
+    if correct:
+        try:
+            text = correct_spelling(text)
+        except Exception:
+            pass
+
+    if lemmatize:
+        doc = nlp(text)
+        tokens = [
+            token.lemma_ for token in doc
+            if token.is_alpha
+            and not token.is_stop
+            and not token.is_punct
+            and not token.like_num
+            and token.pos_ in {"NOUN", "VERB", "ADJ", "ADV"}
+        ]
+        return ' '.join(tokens)
+
+    return text
