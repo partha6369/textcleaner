@@ -43,9 +43,9 @@ print(cleaned)
 # Custom usage with optional features disabled
 cleaned_partial = preprocess(
     text,
-    lemmatize=False,            # Skip spaCy processing (lemmatisation, POS filtering)
-    correct=False,              # Skip spelling correction
-    expand=False                # Skip contraction expansion
+    lemmatise=False,            # Skip spaCy processing (lemmatisation, POS filtering)
+    correct_spelling=False,     # Skip spelling correction
+    expand_contraction=False    # Skip contraction expansion
 )
 print(cleaned_partial)
 ```
@@ -60,9 +60,9 @@ def preprocess(
     lowercase=True,
     remove_html=True,
     remove_emoji=True,
-    expand=True,
-    correct=True,
-    lemmatize=True,
+    expand_contraction=True,
+    correct_spelling=True,
+    lemmatise=True,
 )
 ```
 
