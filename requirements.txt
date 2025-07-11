@@ -1,3 +1,4 @@
 spacy>=3.0.0
 autocorrect==0.4.4
 contractions>=0.1.73
+beautifulsoup4>=4.9.3

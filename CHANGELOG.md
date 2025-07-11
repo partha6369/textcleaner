@@ -1,12 +1,17 @@
 # Changelog
 
 
+## [v0.1.7] - 2025-07-11
+
+### Upgraded remove_html_tag() function
+- Upgraded **remove_html_tag()** function to use **BeautifulSoup**.
+
+---
+
 ## [v0.1.6] - 2025-07-11
 
 ### Changed Parameter Names
 - Replaced **correct_spellings** with **correct_spelling**.
-
----
 
 ## [v0.1.5] - 2025-07-11
 
