@@ -32,7 +32,7 @@ pip install git+https://github.com/partha6369/textcleaner.git
 ## 🧠 Usage
 
 ```python
-from textcleaner import preprocess
+from textcleaner_partha import preprocess
 
 text = "I can't believe it's already raining! 😞 <p>Click here</p>"
 
