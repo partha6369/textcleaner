@@ -1,4 +1,4 @@
-# textcleaner/preprocess.py
+# textcleaner_partha/preprocess.py
 
 import re
 import spacy
@@ -15,7 +15,7 @@ def get_nlp():
         try:
             _nlp = spacy.load("en_core_web_sm")
         except OSError:
-            raise OSError("spaCy model 'en_core_web_sm' not found. Run: python -m spacy download en_core_web_sm")
+            raise OSError("Model 'en_core_web_sm' not found. Run: python -m spacy download en_core_web_sm")
     return _nlp
 
 def get_spell():
@@ -43,7 +43,7 @@ def remove_emojis(text):
     )
     return emoji_pattern.sub(r'', text)
 
-def correct_spelling(text):
+def correct_spellings(text):
     spell = get_spell()
     return ' '.join([spell(w) for w in text.split()])
 
@@ -55,9 +55,9 @@ def preprocess(
     lowercase=True,
     remove_html=True,
     remove_emoji=True,
-    expand=True,
-    correct=True,
-    lemmatize=True,
+    expand_contraction=True,
+    correct_spelling=True,
+    lemmatise=True,
     verbose=False,
 ):
     if lowercase:
@@ -69,17 +69,17 @@ def preprocess(
     if remove_emoji:
         text = remove_emojis(text)
 
-    if expand:
+    if expand_contraction:
         text = expand_contractions(text)
 
-    if correct:
+    if correct_spelling:
         try:
-            text = correct_spelling(text)
+            text = correct_spellings(text)
         except Exception as e:
             if verbose:
                 print(f"[textcleaner warning] Spelling correction skipped: {e}")
 
-    if lemmatize:
+    if lemmatise:
         doc = get_nlp()(text)
         tokens = [
             token.lemma_ for token in doc
