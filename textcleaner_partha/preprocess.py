@@ -4,6 +4,7 @@ import re
 import spacy
 import contractions
 from autocorrect import Speller
+from bs4 import BeautifulSoup
 
 # Lazy initialization
 _nlp = None
@@ -25,7 +26,8 @@ def get_spell():
     return _spell
 
 def remove_html_tags(text):
-    return re.sub(re.compile('<.*?>'), '', text)
+    soup = BeautifulSoup(text, "html.parser")
+    return soup.get_text()
 
 def remove_emojis(text):
     emoji_pattern = re.compile(
