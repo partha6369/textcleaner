@@ -1,6 +1,6 @@
 [project]
 name = "textcleaner-partha"
-version = "0.1.7"
+version = "0.2.0"
 description = "A lightweight and reusable text preprocessing package for NLP tasks"
 readme = "README.md"
 license = "MIT"
@@ -24,6 +24,8 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent"
 ]
+[tool.setuptools.package-data]
+"textcleaner_partha" = ["abbreviation_mappings/*.json"]
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]

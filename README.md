@@ -9,6 +9,7 @@ It cleans text by removing HTML tags and emojis, expanding contractions, correct
 ## ✨ Features
 	•	✅ HTML tag and emoji removal
 	•	✅ Contraction expansion (e.g., “can’t” → “cannot”)
+	•	✅ Abbreviation expansion (e.g., “asap” → “as soon as possible”)
 	•	✅ Spelling correction with autocorrect
 	•	✅ Lemmatization using spaCy (en_core_web_sm)
 	•	✅ Filters out stopwords, punctuation, numbers
@@ -61,6 +62,7 @@ def preprocess(
     remove_html=True,
     remove_emoji=True,
     expand_contraction=True,
+    expand_abbrev=True,
     correct_spelling=True,
     lemmatise=True,
 )

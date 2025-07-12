@@ -1,12 +1,22 @@
 # Changelog
 
 
+## [v0.2.0] - 2025-07-13
+
+### Added feature to Expand Abbreviations
+- Added **expand_abbreviations** function.
+
+---
+## [v0.1.8] - 2025-07-11
+
+### Upgraded BeautifulSoup4 package requirement
+- Changed **BeautifulSoup4** package requirement to >=4.12.0.
+
 ## [v0.1.7] - 2025-07-11
 
 ### Upgraded remove_html_tag() function
 - Upgraded **remove_html_tag()** function to use **BeautifulSoup**.
 
----
 
 ## [v0.1.6] - 2025-07-11
 
