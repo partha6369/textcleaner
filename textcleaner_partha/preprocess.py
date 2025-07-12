@@ -1,14 +1,20 @@
 # textcleaner_partha/preprocess.py
 
+import os
 import re
+import json
 import spacy
 import contractions
+import importlib.resources as pkg_resources
 from autocorrect import Speller
 from bs4 import BeautifulSoup
 
 # Lazy initialization
 _nlp = None
 _spell = None
+_abbrev_map = None
+
+ABBREV_DIR = pkg_resources.files("textcleaner_partha").joinpath("abbreviation_mappings")
 
 def get_nlp():
     global _nlp
@@ -24,6 +30,34 @@ def get_spell():
     if _spell is None:
         _spell = Speller()
     return _spell
+
+def load_abbreviation_mappings():
+    global _abbrev_map
+
+    if _abbrev_map is None:
+        _abbrev_map = {}
+
+    if os.path.exists(ABBREV_DIR):
+        for fname in os.listdir(ABBREV_DIR):
+            if fname.endswith(".json"):
+                path = os.path.join(ABBREV_DIR, fname)
+                try:
+                    with open(path, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                        _abbrev_map.update({k.lower(): v for k, v in data.items()})
+                except Exception as e:
+                        print(f"[textcleaner warning] Failed to load {fname}: {e}")
+
+    return _abbrev_map
+
+def expand_abbreviations(text):
+    abbr_map = load_abbreviation_mappings()
+
+    def replace_abbr(match):
+        word = match.group(0)
+        return abbr_map.get(word.lower(), word)
+
+    return re.sub(r'\b\w+\b', replace_abbr, text)
 
 def remove_html_tags(text):
     soup = BeautifulSoup(text, "html.parser")
@@ -58,6 +92,7 @@ def preprocess(
     remove_html=True,
     remove_emoji=True,
     expand_contraction=True,
+    expand_abbrev=True,
     correct_spelling=True,
     lemmatise=True,
     verbose=False,
@@ -70,6 +105,13 @@ def preprocess(
 
     if remove_emoji:
         text = remove_emojis(text)
+
+    if expand_abbrev:
+        try:
+            text = expand_abbreviations(text)
+        except Exception as e:
+            if verbose:
+                print(f"[textcleaner warning] Abbreviation expansion skipped: {e}")
 
     if expand_contraction:
         text = expand_contractions(text)
