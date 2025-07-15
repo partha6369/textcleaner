@@ -1,12 +1,32 @@
 # Changelog
 
 
+## [v0.3.2] - 2025-07-15
+
+### Added remove_stopwords parameter
+- Added parameter remove_stopwords to the **get_tokens()** function.
+- Added parameter remove_stopwords to the **preprocess()** function.
+
+---
+## [v0.3.1] - 2025-07-15
+
+### Corrected duplicate tokens issue
+- Changed return statement of the **get_tokens()** function.
+
+## [v0.3.0] - 2025-07-14
+
+### Added feature to Return Tokens
+- Added **get_tokens** function.
+
+### Added new abbreviations expansions
+- Added new abbreviations to slang.json.
+- Added new abbreviations to common.json.
+
 ## [v0.2.0] - 2025-07-13
 
 ### Added feature to Expand Abbreviations
 - Added **expand_abbreviations** function.
 
----
 ## [v0.1.8] - 2025-07-11
 
 ### Upgraded BeautifulSoup4 package requirement

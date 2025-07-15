@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="textcleaner-partha",
-    version="0.2.0",
+    version="0.3.2",
     description="Reusable text preprocessing library for NLP tasks",
     author="Dr. Partha Majumdar",
     author_email="partha.majumdar@hotmail.com",

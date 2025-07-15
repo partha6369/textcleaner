@@ -79,6 +79,12 @@ def remove_emojis(text):
     )
     return emoji_pattern.sub(r'', text)
 
+def remove_extra_whitespace(text):
+    return re.sub(r'\s+', ' ', text).strip()
+
+def remove_punctuation(text):
+    return re.sub(r'[^\w\s]', '', text)
+
 def correct_spellings(text):
     spell = get_spell()
     return ' '.join([spell(w) for w in text.split()])
@@ -89,8 +95,11 @@ def expand_contractions(text):
 def preprocess(
     text,
     lowercase=True,
+    remove_stopwords=True,
     remove_html=True,
     remove_emoji=True,
+    remove_whitespace=True,
+    remove_punct=False,
     expand_contraction=True,
     expand_abbrev=True,
     correct_spelling=True,
@@ -123,16 +132,69 @@ def preprocess(
             if verbose:
                 print(f"[textcleaner warning] Spelling correction skipped: {e}")
 
+    if remove_punct:
+        text = remove_punctuation(text)
+
+    if remove_whitespace:
+        text = remove_extra_whitespace(text)
+
     if lemmatise:
         doc = get_nlp()(text)
         tokens = [
             token.lemma_ for token in doc
             if token.is_alpha
-            and not token.is_stop
-            and not token.is_punct
-            and not token.like_num
+            and (not token.is_stop if remove_stopwords else True)
+            and token.pos_ in {"NOUN", "VERB", "ADJ", "ADV"}
+        ]
+        return ' '.join(tokens)
+    else:
+        doc = get_nlp()(text)
+        tokens = [
+            token.text for token in doc
+            if token.is_alpha
+            and (not token.is_stop if remove_stopwords else True)
             and token.pos_ in {"NOUN", "VERB", "ADJ", "ADV"}
         ]
         return ' '.join(tokens)
 
     return text
+
+def get_tokens(
+    text,
+    lowercase=True,
+    remove_stopwords=True,
+    remove_html=True,
+    remove_emoji=True,
+    remove_whitespace=True,
+    remove_punct=False,
+    expand_contraction=True,
+    expand_abbrev=True,
+    correct_spelling=True,
+    lemmatise=True,
+    verbose=False,
+):
+    """Return the list of tokens after full preprocessing pipeline (minus joining)."""
+
+    text = preprocess(
+                        text,
+                        lowercase=lowercase,
+                        remove_stopwords=remove_stopwords,
+                        remove_html=remove_html,
+                        remove_emoji=remove_emoji,
+                        remove_whitespace=remove_whitespace,
+                        remove_punct=remove_punct,
+                        expand_contraction=expand_contraction,
+                        expand_abbrev=expand_abbrev,
+                        correct_spelling=correct_spelling,
+                        lemmatise=False,
+                        verbose=verbose,
+                    )
+
+    doc = get_nlp()(text)
+
+    if lemmatise:
+        tokens = [token.lemma_ for token in doc if not token.is_space]
+    else:
+        tokens = [token.text for token in doc if not token.is_space]
+
+    return list(set(tokens))

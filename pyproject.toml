@@ -1,6 +1,6 @@
 [project]
 name = "textcleaner-partha"
-version = "0.2.0"
+version = "0.3.2"
 description = "A lightweight and reusable text preprocessing package for NLP tasks"
 readme = "README.md"
 license = "MIT"
@@ -8,11 +8,12 @@ authors = [
     { name = "Dr. Partha Majumdar", email = "partha.majumdar@icloud.com" }
 ]
 requires-python = ">=3.7"
-keywords = ["NLP", "text preprocessing", "lemmatization", "contractions", "emoji removal", "spacy", "autocorrect"]
+keywords = ["NLP", "text preprocessing", "lemmatization", "contractions", "emoji removal", "spacy", "autocorrect", "tokens"]
 dependencies = [
     "spacy>=3.0.0",
     "autocorrect>=2.6.1",
-    "contractions>=0.0.55"
+    "contractions>=0.0.55",
+    "beautifulsoup4>=4.12.0"
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",

@@ -8,12 +8,14 @@ It cleans text by removing HTML tags and emojis, expanding contractions, correct
 
 ## ✨ Features
 	•	✅ HTML tag and emoji removal
+	•	✅ Stopword removal
 	•	✅ Contraction expansion (e.g., “can’t” → “cannot”)
 	•	✅ Abbreviation expansion (e.g., “asap” → “as soon as possible”)
 	•	✅ Spelling correction with autocorrect
 	•	✅ Lemmatization using spaCy (en_core_web_sm)
 	•	✅ Filters out stopwords, punctuation, numbers
 	•	✅ Retains only nouns, verbs, adjectives, and adverbs
+	•	✅ Returns tokens in a text
 
 
 ## 🚀 Installation
@@ -21,7 +23,7 @@ It cleans text by removing HTML tags and emojis, expanding contractions, correct
 ### From PyPI:
 
 ```bash
-pip install textcleaner-partha
+pip install --upgrade textcleaner-partha
 ```
 
 Install directly from GitHub:
@@ -51,9 +53,28 @@ cleaned_partial = preprocess(
 print(cleaned_partial)
 ```
 
+```python
+from textcleaner_partha import get_tokens
+
+text = "I can't believe it's already raining! 😞 <p>Click here</p>"
+
+# Default usage (all features enabled)
+tokens = get_tokens(text)
+print(tokens)
+
+# Custom usage with optional features disabled
+tokens_partial = get_tokens(
+    text,
+    lemmatise=False,            # Skip spaCy processing (lemmatisation, POS filtering)
+    correct_spelling=False,     # Skip spelling correction
+    expand_contraction=False    # Skip contraction expansion
+)
+print(tokens_partial)
+```
+
 ## 🔧 Parameters
 
-The preprocess() function offers flexible control over each text cleaning step. You can selectively enable or disable operations using the parameters below:
+The preprocess() and get_tokens() functions offer flexible control over each text cleaning step. You can selectively enable or disable operations using the parameters below:
 
 ```python
 def preprocess(
@@ -61,6 +82,23 @@ def preprocess(
     lowercase=True,
     remove_html=True,
     remove_emoji=True,
+    remove_whitespace=True,
+    remove_punct=False,
+    expand_contraction=True,
+    expand_abbrev=True,
+    correct_spelling=True,
+    lemmatise=True,
+)
+```
+
+```python
+def get_tokens(
+    text,
+    lowercase=True,
+    remove_html=True,
+    remove_emoji=True,
+    remove_whitespace=True,
+    remove_punct=False,
     expand_contraction=True,
     expand_abbrev=True,
     correct_spelling=True,
