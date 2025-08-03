@@ -1,31 +1,33 @@
-# Release Notes for textcleaner-partha v0.1.4
+# Release Notes for **textcleaner-partha v1.0.0**
 
-**Release Date:** 13 July 2025  
-**Version:** `0.3.2`  
+**Release Date:** 29 July 2025  
+**Version:** `1.1.2`  
 **Author:** Dr. Partha Majumdar  
-**PyPI:** [textcleaner-partha](https://pypi.org/project/textcleaner-partha/0.1.9/)
+**PyPI:** [textcleaner-partha](https://pypi.org/project/textcleaner-partha/1.0.0/)
 
 ---
 
 ## 🎯 Highlights
 
-This release delivers a fully stable and production-ready version of `textcleaner-partha`, with added get_tokens() functionality. The library now works reliably in clean environments, and is installable directly from PyPI.
+This is the **first stable and production-ready release** of `textcleaner-partha`.  
+The library now includes **file-based preprocessing (`preprocess_file`)** and **token extraction from files (`get_tokens_from_file`)**, making it easy to process text from TXT, DOCX, and PDF documents seamlessly.
 
 ---
 
 ## ✅ What’s Added
 
-- **remove_stopwords parameter added to preprocess() amd get_tokens().**  
+- **`preprocess_file()`** – Preprocess entire TXT, DOCX, or PDF files.
+- **`get_tokens_from_file()`** – Extract tokens from documents, with optional PDF page-wise processing.
 
 ---
 
 ## ✅ What’s Enhanced
 
-- **New abbreviations file added - medical.json.**  
-- **New abbreviations file added - legal.json.**  
-- **New abbreviations file added - telecom.json.**  
-- **More abbreviations added to common.json.**  
-- **More abbreviations added to slang.json.**  
+- Expanded **domain-specific abbreviation mappings**:
+  - `medical.json`
+  - `legal.json`
+  - `telecom.json`
+- Expanded **`common.json`** and **`slang.json`** abbreviation files with more entries.
 
 ---
 
@@ -33,3 +35,4 @@ This release delivers a fully stable and production-ready version of `textcleane
 
 ```bash
 pip install textcleaner-partha
+```

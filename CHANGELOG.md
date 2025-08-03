@@ -1,5 +1,25 @@
 # Changelog
 
+## [v1.1.2] - 2025-07-29
+
+### Removed blank line outputs from preprocess_file()
+
+
+---
+
+## [v1.1.1] - 2025-07-29
+
+### Contains minor bug fixes
+### Added more abbreviations
+
+## [v1.1.0] - 2025-07-29
+
+### Contains critical bug fixes
+
+## [v1.0.0] - 2025-07-29
+
+### Added preprocess_file()
+### Added get_tokens_from_file()
 
 ## [v0.3.2] - 2025-07-15
 
@@ -7,7 +27,6 @@
 - Added parameter remove_stopwords to the **get_tokens()** function.
 - Added parameter remove_stopwords to the **preprocess()** function.
 
----
 ## [v0.3.1] - 2025-07-15
 
 ### Corrected duplicate tokens issue

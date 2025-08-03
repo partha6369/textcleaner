@@ -12,7 +12,7 @@ It cleans text by removing HTML tags and emojis, expanding contractions, correct
 	•	✅ Contraction expansion (e.g., “can’t” → “cannot”)
 	•	✅ Abbreviation expansion (e.g., “asap” → “as soon as possible”)
 	•	✅ Spelling correction with autocorrect
-	•	✅ Lemmatization using spaCy (en_core_web_sm)
+	•	✅ Lemmatisation using spaCy (en_core_web_sm)
 	•	✅ Filters out stopwords, punctuation, numbers
 	•	✅ Retains only nouns, verbs, adjectives, and adverbs
 	•	✅ Returns tokens in a text
